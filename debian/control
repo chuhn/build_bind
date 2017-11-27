@@ -4,12 +4,13 @@ Priority: optional
 Maintainer: Christopher Huhn, GSI <C.Huhn@gsi.de>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.8
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://github.com/opennetadmin/build_bind
 #Vcs-Git: https://anonscm.debian.org/collab-maint/opennetadmin-plugin-build-bind.git
 #Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/opennetadmin-plugin-build-bind.git
 
 Package: opennetadmin-plugin-build-bind
 Architecture: all
-Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${misc:Depends}, opennetadmin
+Description: Build bind zone and config files from opennetadmin data
+ An Opennetadmin module to extract and build
+ BIND DNS server configurations from the opennetadmin database.
