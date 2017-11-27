@@ -21,8 +21,8 @@ set -e
 
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-
         # TODO: remove build_bind_* entries from dcm_module_list table
+        #  unfortunately there is no del_module module
     ;;
 
     *)

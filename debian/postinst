@@ -17,11 +17,28 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+# TODO: read from ONA or debconf
+ONA='ona.rb -u http://localhost/opennetadmin/dcm.php -l admin -p admin'
 
 case "$1" in
     configure)
-
-        # TODO: create entries in dcm_module_list table
+        # create entries in dcm_module_list table
+        $ONA -r add_module \
+             name=build_bind_conf \
+             file=../plugins/build_bind/build_bind.inc.php \
+             desc='Build BIND DNS config file'
+        $ONA -r add_module \
+             name=build_bind_zone \
+             file=../plugins/build_bind/build_bind.inc.php \
+             desc='Build BIND DNS zone file'
+        $ONA -r add_module \
+             name=build_bind_server_domain_list \
+             file=../plugins/build_bind/build_bind.inc.php \
+             desc='List domains associated with a server'
+        $ONA -r ona_sql sql="insert into sys_config (name,value,description,"\
+             "field_validation_rule,failed_rule_text,editable,deleteable) " \
+             "values ('build_dns_type','bind','DNS build type','','',1,1)"\
+             " on duplicate key update value='bind'" commit=Y
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
