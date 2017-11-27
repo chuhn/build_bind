@@ -1,0 +1,3 @@
+build_bind         /usr/bin
+build_bind.inc.php /usr/share/opennetadmin/plugins/build_bind
+plugin_info.php    /usr/share/opennetadmin/plugins/build_bind
