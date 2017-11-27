@@ -1,3 +1,9 @@
+opennetadmin-plugin-build-bind (1.2+20160610.fe417d7-1) UNRELEASED; urgency=medium
+
+  * Package latest commit
+
+ -- Christopher Huhn, GSI <C.Huhn@gsi.de>  Mon, 27 Nov 2017 17:15:24 +0100
+
 opennetadmin-plugin-build-bind (1.2-1) unstable; urgency=medium
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
