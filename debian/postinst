@@ -28,7 +28,7 @@ case "$1" in
              file=../plugins/build_bind/build_bind.inc.php \
              desc='Build BIND DNS config file'
         $ONA -r add_module \
-             name=build_bind_zone \
+             name=build_bind_domain \
              file=../plugins/build_bind/build_bind.inc.php \
              desc='Build BIND DNS zone file'
         $ONA -r add_module \
