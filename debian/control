@@ -11,6 +11,7 @@ Homepage: https://github.com/opennetadmin/build_bind
 Package: opennetadmin-plugin-build-bind
 Architecture: all
 Depends: ${misc:Depends}, opennetadmin
+Suggests: bind9utils
 Description: Build bind zone and config files from opennetadmin data
  An Opennetadmin module to extract and build
  BIND DNS server configurations from the opennetadmin database.
