@@ -25,4 +25,4 @@
 
 override_dh_install:
 	dh_install --list-missing
-	cp build_bind.conf.sample debian/opennetadmin-plugin-build-bind/etc/opennetadmin
+	cp build_bind.conf.sample debian/opennetadmin-plugin-build-bind/etc/opennetadmin/build_bind.conf
