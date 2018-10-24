@@ -1,0 +1,21 @@
+From: Christopher Huhn <C.Huhn@gsi.de>
+Date: Wed, 24 Oct 2018 16:02:08 +0200
+Subject: Tell bash that -s has a parameter
+
+---
+ build_bind | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build_bind b/build_bind
+index a40a4cd..99f47c2 100755
+--- a/build_bind
++++ b/build_bind
+@@ -110,7 +110,7 @@ Usage: $(basename $0) [-c] [-s <FQDN>] [-b] [-t] [-d]
+   -d     Enable debug output
+ "
+ 
+-while getopts "c:sbtd" options; do
++while getopts "c:s:btd" options; do
+   case $options in
+     c ) LOCALCONF=$OPTARG;;
+     s ) SRV_FQDN=$OPTARG;;

@@ -1,1 +1,2 @@
 0001-cmdline-args-should-take-precedence-over-config-file.patch
+0002-Tell-bash-that-s-has-a-parameter.patch
