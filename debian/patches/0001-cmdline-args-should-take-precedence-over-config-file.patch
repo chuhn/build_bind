@@ -1,0 +1,34 @@
+From: Christopher Huhn <C.Huhn@gsi.de>
+Date: Wed, 24 Oct 2018 15:54:47 +0200
+Subject: cmdline args should take precedence over config file
+
+---
+ build_bind | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/build_bind b/build_bind
+index 0796b1c..a40a4cd 100755
+--- a/build_bind
++++ b/build_bind
+@@ -95,6 +95,10 @@ ONABASE=$(cat /etc/onabase)
+ LOCALCONF="${ONABASE}/etc/build_bind.conf"
+ [ ! -r ${LOCALCONF} ] && echo "[$0] NOTICE: Local config file ${LOCALCONF} absent, exiting." && exit 1
+ 
++# include a local configuration file if present to prevent settings from being
++# overwritten whenever the build_bind script is being updated
++[ ! -r "${LOCALCONF}" ] || source "${LOCALCONF}"
++
+ #### Process the commandline options
+ USAGE="
+ Usage: $(basename $0) [-c] [-s <FQDN>] [-b] [-t] [-d]
+@@ -120,10 +124,6 @@ while getopts "c:sbtd" options; do
+   esac
+ done
+ 
+-# include a local configuration file if present to prevent settings from being
+-# overwritten whenever the build_bind script is being updated
+-[ ! -r "${LOCALCONF}" ] || source "${LOCALCONF}"
+-
+ # This will log a message in a standardized way
+ # Its job is simple.. take the message that was passed in and log it via some mechanism.
+ # Currently, it echos to stdout and logs in syslog
