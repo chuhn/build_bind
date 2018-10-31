@@ -1,2 +1,4 @@
 0001-cmdline-args-should-take-precedence-over-config-file.patch
 0002-Tell-bash-that-s-has-a-parameter.patch
+0003-Also-select-NS-records-from-child-domains.patch
+0004-Beautify-sort-order.patch

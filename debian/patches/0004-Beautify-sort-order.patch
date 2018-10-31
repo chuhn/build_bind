@@ -1,0 +1,39 @@
+From: Christopher Huhn <C.Huhn@gsi.de>
+Date: Wed, 31 Oct 2018 16:17:47 +0100
+Subject: Beautify sort order
+
+---
+ build_bind.inc.php | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/build_bind.inc.php b/build_bind.inc.php
+index 98bbdb8..6450e04 100644
+--- a/build_bind.inc.php
++++ b/build_bind.inc.php
+@@ -348,14 +348,24 @@ EOF
+     // loop through records and display them
+     $q="
+     SELECT  dns.*
+-      FROM    dns, domains dom
++      FROM    dns, domains dom,
++              interfaces i
+       WHERE   dns.domain_id = dom.id
++        AND   dns.interface_id = i.id
+         AND ( domain_id = {$domain['id']}
+           OR ( dom.parent_id = {$domain['id']}
+             AND dns.type = 'NS'
+           )
+         )
+-    ORDER BY type";
++    ORDER BY CASE
++            WHEN type = 'NS'    THEN 1
++            WHEN type = 'MX'    THEN 2
++            WHEN type = 'SRV'   THEN 3
++            WHEN type = 'TXT'   THEN 4
++            WHEN type = 'A'     THEN 10
++            WHEN type = 'CNAME' THEN 11
++            WHEN type = 'PTR'   THEN 90
++        END, dns.name, ip_addr";
+ 
+ 
+     // exectue the query
