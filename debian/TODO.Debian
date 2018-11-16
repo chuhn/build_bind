@@ -1,1 +1,4 @@
-* directly call dcm.php from postinst etc
+# postinst
+
+* directly call dcm.php from postinst?
+* don't add modules that are already enabled
