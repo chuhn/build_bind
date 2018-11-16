@@ -3,31 +3,34 @@ Date: Wed, 31 Oct 2018 16:17:47 +0100
 Subject: Beautify sort order
 
 ---
- build_bind.inc.php | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ build_bind.inc.php | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
 diff --git a/build_bind.inc.php b/build_bind.inc.php
-index 1335e43..9164c05 100644
+index 1335e43..f216690 100644
 --- a/build_bind.inc.php
 +++ b/build_bind.inc.php
-@@ -348,8 +348,10 @@ EOF
+@@ -347,8 +347,10 @@ EOF
+ 
      // loop through records and display them
      $q="
-     SELECT  dns.*
+-    SELECT  dns.*
 -      FROM    dns, domains dom
-+      FROM    dns, domains dom,
-+              interfaces i
++    SELECT      dns.*
++      FROM      domains dom, dns
++      LEFT JOIN interfaces i
++        ON    dns.interface_id = i.id
        WHERE   dns.domain_id = dom.id
-+        AND   dns.interface_id = i.id
          AND ( domain_id = {$domain['id']} -- direct zone entries
            OR ( -- NS records of subdomains:
-             dom.parent_id = {$domain['id']} AND dns.type = 'NS'
-@@ -364,7 +366,15 @@ EOF
+@@ -364,9 +366,15 @@ EOF
              ) AND domain_id <> {$domain['id']}
            )
          )
 -    ORDER BY type";
-+    ORDER BY CASE
+-
+-
++      ORDER BY CASE
 +            WHEN type = 'NS'    THEN 1
 +            WHEN type = 'MX'    THEN 2
 +            WHEN type = 'SRV'   THEN 3
@@ -37,5 +40,5 @@ index 1335e43..9164c05 100644
 +            WHEN type = 'PTR'   THEN 90
 +        END, dns.name, ip_addr";
  
- 
- 
+     // exectue the query
+     $rs = $onadb->Execute($q);

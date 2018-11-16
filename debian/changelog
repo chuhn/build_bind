@@ -1,8 +1,14 @@
 opennetadmin-plugin-build-bind (1.2+20160610.fe417d7-1) UNRELEASED; urgency=medium
 
+  [ Christopher Huhn, GSI ]
   * Package latest commit
 
- -- Christopher Huhn, GSI <C.Huhn@gsi.de>  Mon, 27 Nov 2017 17:15:24 +0100
+  [ Christopher Huhn ]
+  * Remove shebang from config file
+  * More TODOs
+  * Left join required for interfaces table to capture all records
+
+ -- Christopher Huhn <C.Huhn@gsi.de>  Fri, 16 Nov 2018 15:16:16 +0100
 
 opennetadmin-plugin-build-bind (1.2-1) unstable; urgency=medium
 
